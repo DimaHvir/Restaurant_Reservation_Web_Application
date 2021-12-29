@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import {makeTable} from "../utils/api";
 
@@ -11,7 +11,6 @@ function NewTable() {
 	event.preventDefault();
 	const dataChange = formState; //is this reference or value?
 	dataChange[event.target.id] = event.target.value; //will event.target.id work?
-	if (event.target.id === "capacity") dataChange[event.target.id] = Number(event.target.value);
 	setFormState(dataChange);
     }
     

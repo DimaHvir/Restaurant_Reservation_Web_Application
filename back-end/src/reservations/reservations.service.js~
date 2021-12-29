@@ -23,14 +23,13 @@ function read(resId) {
 function updateStatus(resId, status) {
     return knex("reservations")
 	.where({reservation_id : resId})
-	.update({status : status})
+	.update({status : status});
 }
 
 function updateReservation(resId, data) {
     return knex("reservations")
 	.where({reservation_id : resId})
-	.update(data)
-	.then((res) => res[0]);
+	.update(data);
 }
 
 function create(data) {

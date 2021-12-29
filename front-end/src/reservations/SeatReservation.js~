@@ -46,18 +46,17 @@ function SeatReservation() {
 	history.goForward();
     }
     
-	const options = tables.filter((table) => !table.reservation_id)
-	      .map((table) => {
-		  return (<option key={table.table_id} id={table.table_id} value={table.table_id}>
-			      {table.table_name} - {table.capacity}
-			  </option>);
-	      });
-	
+    const options = tables.map((table) => {
+	if (table.capacity >= reservation.people && !table.reservation_id) {
+	    return (<option key={table.table_id} id={table.table_id} value={table.table_id}>{table.table_name} - {table.capacity}</option>);
+	}
+    });
+
     return (<main>
 		<h1>Seat this table</h1>
 		<div className="d-md-flex bm-3">
 		    <form onSubmit={handleSubmit}>
-			<select name="table_id" id="select_table" required>
+			<select name="table" id="select_table" required>
 			    {options}
 			</select>
 			<button type="submit" className="btn btn-primary">Seat Table</button>

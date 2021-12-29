@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {useHistory} from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {useHistory, Link} from "react-router-dom";
 import {listReservations} from "./utils/api";
 import ErrorAlert from "./layout/ErrorAlert";
 
@@ -41,13 +41,13 @@ function Search() {
 
     return (
 	<main>
-	    {notFound && <div class="alert alert-danger">No reservations found</div>}
+	    {notFound && <div class="alert alert-danger">No Reservations Found</div>}
 	    <h1>Find a reservation</h1>
 	    <div className="d-md-flex bm-3">
 		<form onSubmit={submitHandler}>
 		    <div className="form-group">
 			<label for="mobile_number">Phone Number:</label>
-			<input name="mobile_number" type="tel" id="mobile_number"  required/>
+			<input name="mobile_number" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="mobile_number"  required/>
 		    </div>
 		    <button type="submit" className="btn btn-primary">Find Reservation</button>
 		    <button className="btn btn-secondary" onClick={cancelHandler}>Cancel</button>

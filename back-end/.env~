@@ -1,0 +1,5 @@
+DATABASE_URL="postgres://urhcpsdu:tj2PWm984vmegcQ3dzOt0vpCBXa6Tp55@castor.db.elephantsql.com/urhcpsdu"
+DATABASE_URL_DEVELOPMENT="postgres://urhcpsdu:tj2PWm984vmegcQ3dzOt0vpCBXa6Tp55@castor.db.elephantsql.com/urhcpsdu"
+DATABASE_URL_TEST="postgres://urhcpsdu:tj2PWm984vmegcQ3dzOt0vpCBXa6Tp55@castor.db.elephantsql.com/urhcpsdu"
+DATABASE_URL_PREVIEW="postgres://urhcpsdu:tj2PWm984vmegcQ3dzOt0vpCBXa6Tp55@castor.db.elephantsql.com/urhcpsdu"
+LOG_LEVEL="info"

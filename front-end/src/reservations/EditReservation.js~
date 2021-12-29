@@ -20,9 +20,8 @@ function EditReservation() {
 	    history.push("/");
 	    history.goForward();
 	}
-	    console.log(foundReservation);
-	    setReservation(foundReservation[0]);
-	    setFormState(foundReservation[0]);
+	console.log(foundReservation);
+	setReservation(foundReservation[0]);
 	}
 
 	fetchData();
@@ -50,14 +49,14 @@ function EditReservation() {
 	const {reservation_time, reservation_date} = formState;
 	const today = new Date();
 	const resDate = new Date(reservation_date);
-	//if (resDate.getDate() + 1 < today.getDate() || reservation_time > '21:30' || reservation_time < '10:30' || resDate.getDay() === 1) {
-	    //setErrorMessage("Reservation date is either on a Tuesday or has already passed");
-	//}
-	//else {
+	if (resDate.getDate() + 1 < today.getDate() || reservation_time > '21:30' || reservation_time < '10:30' || resDate.getDay() === 1) {
+	    setErrorMessage("Reservation date is either on a Tuesday or has already passed");
+	}
+	else {
 	    await updateReservation(reservationId, formState);
-	    history.push(`/dashboard/?date=${formState.reservation_date}`);
+	    history.push("/");
 	    history.goForward();
-	//}
+	}
     }
     
     return (
@@ -90,7 +89,7 @@ function EditReservation() {
 			<label for="people">Number of Guests:</label>
 			<input name="people" type="number" id="people" placeholder={reservation.people}  min="1" max="6" onChange={changeHandler} />
 		    </div>
-		    <button className="btn btn-primary" type="submit">Submit</button>
+		    <button className="btn btn-primary" type="submit">Update Reservation</button>
 		    <button className="btn btn-secondary" onClick={cancelHandler}>Cancel</button>
 		</form>
 	    </div>

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import {makeReservation} from "../utils/api";
 
@@ -17,7 +17,6 @@ function NewReservation() {
 	event.preventDefault();
 	const dataChange = formState; //is this reference or value?
 	dataChange[event.target.id] = event.target.value; //will event.target.id work?
-	if (event.target.id === "people") dataChange[event.target.id] = Number(dataChange[event.target.id])
 	setFormState(dataChange);
     }
 
@@ -36,7 +35,7 @@ function NewReservation() {
 	}
 	else {
 	    await makeReservation(formState);
-	    history.push(`/dashboard/?date=${formState.reservation_date}`);
+	    history.push("/");
 	    history.goForward();
 	}
     }
@@ -65,7 +64,7 @@ function NewReservation() {
 		    </div>
 		    <div className="form-group">
 			<label for="reservation_time">Reservation Time:</label>
-			<input name="reservation_time" type="time" id="reservation_time" onChange={changeHandler} required/>
+			<input name="reservation_time" type="time" id="reservation_time" min="10:30" max="21:30" onChange={changeHandler} required/>
 		    </div>
 		    <div className="form-group">
 			<label for="people">Number of Guests:</label>

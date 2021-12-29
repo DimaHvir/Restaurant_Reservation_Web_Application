@@ -1,11 +1,7 @@
 const knex = require("../db/connection");
 
 function list(occupied) {
-    return knex("tables").select("*").orderBy("table_name");
-}
-
-function checkReservation(resId) {
-    return knex("reservations").select("*").where({reservation_id : resId}).first();
+    return knex("tables").select("*");
 }
 
 function read(tableId) {
@@ -45,6 +41,5 @@ module.exports = {
     read,
     create,
     addReservation,
-    checkReservation,
     deleteReservation
 }

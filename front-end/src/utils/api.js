@@ -80,7 +80,7 @@ export async function makeReservation(newReservation, signal) {
     const options = {
 	method: "POST",
 	headers,
-	body : JSON.stringify(newReservation),
+	body : JSON.stringify({data :  newReservation}),
 	signal
     };
     return await fetchJson(url, options, newReservation);
@@ -91,7 +91,7 @@ export async function makeTable(newTable, signal) {
     const options = {
 	method: "POST", 
 	headers,
-	body : JSON.stringify(newTable),
+	body : JSON.stringify({data : newTable}),
 	signal
     };
     return await fetchJson(url, options, newTable);

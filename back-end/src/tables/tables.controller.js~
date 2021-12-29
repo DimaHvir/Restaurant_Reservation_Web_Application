@@ -32,7 +32,7 @@ async function checkCreateInput(req, res, next) {
     if (data.table_name && data.capacity) {
 	if (typeof data.capacity !== "number") next({status:400, message:"capacity is not a number"});
 	if (data.table_name.length === 1) next({status:400, message:"table_name is only one character"});	
-	res.locals.newTable = {table_name : data.table_name, capacity : data.capacity, reservation_id : data.reservation_id};
+	res.locals.newTable = {table_name : data.table_name, capacity : data.capacity};
 	return next();
     }
     return next({status: 400, message: `Invalid body for create request, table_name : ${data.table_name} , capacity: ${data.capacity}`});
