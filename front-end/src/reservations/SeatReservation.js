@@ -11,7 +11,7 @@ function SeatReservation() {
     const history = useHistory();
     console.log(reservationId);
     
-    useEffect(async () => {
+    useEffect(() => {
 	const abortController = new AbortController();
 	console.log(reservationId);
 	async function fetchData() {
@@ -29,7 +29,7 @@ function SeatReservation() {
 
 	fetchData();
 	return () => abortController.abort();
-    }, []);
+    }, [history, reservationId]);
 
     async function fetchReservation(reservation_id, signal) {
 	return await listReservations({reservation_id}, signal);

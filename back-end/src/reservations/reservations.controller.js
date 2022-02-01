@@ -22,7 +22,7 @@ function checkNewInput(req, res, next) {
 	if(typeof data.people !== "number") next({status:400, message: `people ${data.people} is not a number`});
 	if(data.reservation_time === "not-a-time") next({status:400, message: `reservation_time ${data.reservation_time} is not a time`});
 	const date = new Date();
-	if (resDate < date) {
+	if (resDate < date && resDate.getDate() + 1 !== date.getDate()) {
 	    next({status:400, message : "the reservation date has already passed; you must pick a date and time in the future"});
 	}
 	if (resDate.getDay() === 1) next({status:400, message : "No reservations can be made for tuesday; the restuarant is closed"});

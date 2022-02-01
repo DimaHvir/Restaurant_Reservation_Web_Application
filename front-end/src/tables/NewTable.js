@@ -5,6 +5,7 @@ import {makeTable} from "../utils/api";
 function NewTable() {
 
     const [formState, setFormState] = useState({});
+    const [errorMessage, setErrorMessage] = useState(null);
     const history = useHistory(); 
     
     const changeHandler = event => {
@@ -17,9 +18,14 @@ function NewTable() {
     
     const submitHandler = async event => {
 	event.preventDefault();
-	await makeTable(formState);
-	history.push("/");
-	history.goForward();
+	if (formState.table_name.length === 1) {
+	    setErrorMessage("table_name must be greater than one character");
+	}
+	else {
+	    await makeTable(formState);
+	    history.push("/");
+	    history.goForward();
+	}
 	
     }
 
@@ -29,6 +35,7 @@ function NewTable() {
     }
     return (
 	<main>
+	    {errorMessage !== null && <div className="alert alert-danger">{errorMessage}</div>}
 	    <h1>Create a new table</h1>
 	    <div className="d-md-flex bm-3">
 		<form onSubmit={submitHandler}> {/*TODO*/}
